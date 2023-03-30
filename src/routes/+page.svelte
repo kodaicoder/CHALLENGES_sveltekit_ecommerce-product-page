@@ -73,7 +73,9 @@
 </script>
 
 <svelte:window bind:innerWidth />
-<div class="grid grid-flow-row mt-16 pt-1 lg:m-44 lg:grid-cols-2 lg:gap-24 lg:items-center">
+<div
+	class="grid grid-flow-row mt-16 pt-1 lg:mx-44 lg:my-24 lg:grid-cols-2 lg:gap-24 lg:items-center"
+>
 	<!--? Carousel Section -->
 	<div class="w-full">
 		<Carousel

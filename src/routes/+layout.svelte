@@ -7,7 +7,7 @@
 <div>
 	<NavBar />
 
-	<main>
+	<main class="mt-40">
 		<slot />
 	</main>
 	<footer>
