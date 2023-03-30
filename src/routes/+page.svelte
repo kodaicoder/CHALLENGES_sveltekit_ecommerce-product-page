@@ -59,49 +59,76 @@
 		}
 	};
 
-	let innerWidth = 1024;
-	let galleryShow = false;
-	let lightBoxEnable = false;
+	// let innerWidth = 1024;
+	// let galleryShow = false;
+	// let lightBoxEnable = false;
 
-	//? fix issue while user adjust width of page and didn't close side nav menu
-	$: {
-		if (innerWidth > 768) {
-			galleryShow = true;
-			lightBoxEnable = true;
-		} else {
-			galleryShow = false;
-			lightBoxEnable = false;
-		}
-	}
+	// //? fix issue while user adjust width of page and didn't close side nav menu
+	// $: {
+	// 	if (innerWidth > 768) {
+	// 		galleryShow = true;
+	// 		lightBoxEnable = true;
+	// 	} else {
+	// 		galleryShow = false;
+	// 		lightBoxEnable = false;
+	// 	}
+	// }
 </script>
 
-<svelte:window bind:innerWidth />
+<!-- <svelte:window bind:innerWidth /> -->
 <div
 	class="grid grid-flow-row mt-16 pt-1 lg:grid-cols-2 lg:gap-24 lg:mx-auto lg:max-w-4xl xl:max-w-6xl lg:items-center"
 >
-	<!--? Carousel Section -->
-	<div class="w-full">
+	<!--? Carousel Laptop Section -->
+	<div class="hidden lg:block w-full">
 		<Carousel
 			images={itemData.images.fullImages}
 			thumbnails={itemData.images.thumbnailImages}
 			isAutoPlay={true}
-			isLoop={true}
-			arrowMode={!galleryShow}
-			galleryMode={galleryShow}
-			{lightBoxEnable}
+			isLoop={false}
+			arrowMode={false}
+			galleryMode={true}
+			lightBoxEnable={true}
 			dotMode={false}
 		>
 			<img
 				slot="prevBtn"
 				src={prevIcon}
 				alt="previous"
-				class="fixed w-1/4 transition-all duration-200 lg:group-hover:filter-orange group-active:filter-orange"
+				class="fixed w-1/5 transition-all duration-200 lg:group-hover:filter-orange group-active:filter-orange"
 			/>
 			<img
 				slot="nextBtn"
 				src={nextIcon}
 				alt="next"
-				class="fixed w-1/4 transition-all duration-200 lg:group-hover:filter-orange group-active:filter-orange"
+				class="fixed w-1/5 transition-all duration-200 lg:group-hover:filter-orange group-active:filter-orange"
+			/>
+		</Carousel>
+	</div>
+
+	<!--? Carousel Mobile Section -->
+	<div class="block lg:hidden w-full">
+		<Carousel
+			images={itemData.images.fullImages}
+			thumbnails={itemData.images.thumbnailImages}
+			isAutoPlay={true}
+			isLoop={false}
+			arrowMode={true}
+			galleryMode={false}
+			lightBoxEnable={false}
+			dotMode={false}
+		>
+			<img
+				slot="prevBtn"
+				src={prevIcon}
+				alt="previous"
+				class="fixed w-1/5 transition-all duration-200 lg:group-hover:filter-orange group-active:filter-orange"
+			/>
+			<img
+				slot="nextBtn"
+				src={nextIcon}
+				alt="next"
+				class="fixed w-1/5 transition-all duration-200 lg:group-hover:filter-orange group-active:filter-orange"
 			/>
 		</Carousel>
 	</div>

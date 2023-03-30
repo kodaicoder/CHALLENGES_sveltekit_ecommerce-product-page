@@ -6,7 +6,7 @@
 
 	export let images;
 	export let thumbnails = [];
-	let innerWidth = 1024;
+	let innerWidth;
 
 	const dispatch = createEventDispatcher();
 	$: {
@@ -40,13 +40,13 @@
 						slot="prevBtn"
 						src={prevIcon}
 						alt="previous"
-						class="fixed w-5 -translate-x-1 transition-all duration-200 group-hover:filter-orange"
+						class="fixed w-3 -translate-x-1 transition-all duration-200 group-hover:filter-orange"
 					/>
 					<img
 						slot="nextBtn"
 						src={nextIcon}
 						alt="next"
-						class="fixed w-5 translate-x-1 transition-all duration-200 group-hover:filter-orange"
+						class="fixed w-3 translate-x-1 transition-all duration-200 group-hover:filter-orange"
 					/>
 				</Carousel>
 			</div>
