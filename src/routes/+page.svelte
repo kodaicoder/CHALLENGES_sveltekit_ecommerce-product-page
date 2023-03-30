@@ -75,6 +75,9 @@
 	// }
 </script>
 
+<svelte:head>
+	<title>Ecommerce Product Page</title>
+</svelte:head>
 <!-- <svelte:window bind:innerWidth /> -->
 <div
 	class="grid grid-flow-row mt-16 pt-1 lg:grid-cols-2 lg:gap-24 lg:mx-auto lg:max-w-4xl xl:max-w-6xl lg:items-center"
