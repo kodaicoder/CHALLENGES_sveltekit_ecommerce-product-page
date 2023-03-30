@@ -59,22 +59,25 @@
 		}
 	};
 
-	let innerWidth = 1440;
+	let innerWidth = 1024;
 	let galleryShow = false;
+	let lightBoxEnable = false;
 
 	//? fix issue while user adjust width of page and didn't close side nav menu
 	$: {
 		if (innerWidth > 768) {
 			galleryShow = true;
+			lightBoxEnable = true;
 		} else {
 			galleryShow = false;
+			lightBoxEnable = false;
 		}
 	}
 </script>
 
 <svelte:window bind:innerWidth />
 <div
-	class="grid grid-flow-row mt-16 pt-1 lg:mx-44 lg:my-24 lg:grid-cols-2 lg:gap-24 lg:items-center"
+	class="grid grid-flow-row mt-16 pt-1 lg:grid-cols-2 lg:gap-24 lg:mx-auto lg:max-w-4xl xl:max-w-6xl lg:items-center"
 >
 	<!--? Carousel Section -->
 	<div class="w-full">
@@ -85,19 +88,20 @@
 			isLoop={true}
 			arrowMode={!galleryShow}
 			galleryMode={galleryShow}
+			{lightBoxEnable}
 			dotMode={false}
 		>
 			<img
 				slot="prevBtn"
 				src={prevIcon}
 				alt="previous"
-				class="fixed w-2 transition-all duration-200 group-hover:filter-orange"
+				class="fixed w-1/4 transition-all duration-200 lg:group-hover:filter-orange group-active:filter-orange"
 			/>
 			<img
 				slot="nextBtn"
 				src={nextIcon}
 				alt="next"
-				class="fixed w-2 transition-all duration-200 group-hover:filter-orange"
+				class="fixed w-1/4 transition-all duration-200 lg:group-hover:filter-orange group-active:filter-orange"
 			/>
 		</Carousel>
 	</div>

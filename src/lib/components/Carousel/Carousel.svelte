@@ -2,16 +2,19 @@
 	import emblaCarouselSvelte from 'embla-carousel-svelte';
 	import Autoplay from 'embla-carousel-autoplay';
 	import Gallery from './Gallery.svelte';
+	import LightBox from './LightBox.svelte';
 
 	export let images;
 	export let thumbnails = [];
 	export let isAutoPlay = false;
 	export let isLoop = false;
+	export let lightBoxEnable = false;
 	export let arrowMode = false;
 	export let dotMode = false;
 	export let galleryMode = false;
 
 	let emblaApi;
+	$: isLightBoxShow = false;
 	$: selectedIndex = 0;
 
 	const autoplayOptions = {
@@ -47,49 +50,71 @@
 		selectedIndex = event.detail.index;
 		emblaApi.scrollTo(selectedIndex);
 	};
+
+	const toggleLightBox = (event) => {
+		isLightBoxShow = !isLightBoxShow;
+	};
 </script>
 
-<div class="h-full overflow-hidden relative" use:emblaCarouselSvelte={emblaConfig} on:init={onInit}>
-	<div class="flex h-full">
-		{#each images as image (image.src)}
-			<div class="flex justify-center flex-[0_0_100%] min-w-0">
-				<img src={image.src} alt={image.alt} class="lg:rounded-2xl" />
+<div class="h-full">
+	<div class="relative">
+		<div class="overflow-hidden" use:emblaCarouselSvelte={emblaConfig} on:init={onInit}>
+			<div class="flex h-full">
+				{#if lightBoxEnable}
+					{#each images as image (image.src)}
+						<div class="flex flex-[0_0_100%] min-w-0 justify-center">
+							<button class="lg:rounded-2xl overflow-hidden" on:click={toggleLightBox}>
+								<img src={image.src} alt={image.alt} />
+							</button>
+						</div>
+					{/each}
+				{:else}
+					{#each images as image (image.src)}
+						<div class="flex flex-[0_0_100%] min-w-0 justify-center">
+							<img src={image.src} alt={image.alt} class="lg:rounded-2xl" />
+						</div>
+					{/each}
+				{/if}
 			</div>
-		{/each}
-	</div>
-	{#if arrowMode}
-		<button class="embla__prev group" on:click={scrollPrev}>
-			<div class="content__button__prev">
-				<slot name="prevBtn">
-					<div class="prev"><b>➤</b></div>
-				</slot>
-			</div>
-		</button>
-		<button class="embla__next group" on:click={scrollNext}>
-			<div class="content__button__next">
-				<slot name="nextBtn">
-					<div class="next"><b>➤</b></div>
-				</slot>
-			</div>
-		</button>
-	{/if}
-	{#if dotMode}
-		<!-- flex gap-6 absolute bottom-3 justify-center w-full -->
-		<div class="embla__dots">
-			{#each images as image, index (image.src)}
-				<button
-					on:click={() => {
-						scrollTo(index);
-					}}
-					class={'embla__dot'.concat(selectedIndex == index ? ' embla__dot--selected' : '')}
-				/>
-			{/each}
 		</div>
-	{/if}
+		{#if arrowMode}
+			<button class="embla__prev group" on:click={scrollPrev}>
+				<div class="content__button__prev">
+					<slot name="prevBtn">
+						<div class="prev"><b>➤</b></div>
+					</slot>
+				</div>
+			</button>
+			<button class="embla__next group" on:click={scrollNext}>
+				<div class="content__button__next">
+					<slot name="nextBtn">
+						<div class="next"><b>➤</b></div>
+					</slot>
+				</div>
+			</button>
+		{/if}
+		{#if dotMode}
+			<!-- flex gap-6 absolute bottom-3 justify-center w-full -->
+			<div class="embla__dots">
+				{#each images as image, index (image.src)}
+					<button
+						on:click={() => {
+							scrollTo(index);
+						}}
+						class={'embla__dot'.concat(selectedIndex == index ? ' embla__dot--selected' : '')}
+					/>
+				{/each}
+			</div>
+		{/if}
+	</div>
 	{#if galleryMode && thumbnails.length > 0}
 		<Gallery {thumbnails} {selectedIndex} on:thumbnailsClick={thumbnailsClick} />
 	{/if}
 </div>
+
+{#if isLightBoxShow}
+	<LightBox {images} {thumbnails} on:closeLightBox={toggleLightBox} />
+{/if}
 
 <style>
 	.embla {
@@ -119,7 +144,7 @@
 		height: 100%;*/
 		background-color: white;
 		border-radius: 99999px;
-		padding: 1rem;
+		padding: 5%;
 	}
 
 	.embla__prev {
@@ -134,10 +159,14 @@
 		transform: translateY(-50%);
 	}
 
-	.embla__prev:hover,
-	.embla__next:hover,
-	.embla__prev:active,
-	.embla__next:active {
+	@media screen and (min-width: 1024px) {
+		.embla__prev {
+			left: -5%;
+		}
+
+		.embla__next {
+			right: -5%;
+		}
 	}
 
 	.content__button__prev,

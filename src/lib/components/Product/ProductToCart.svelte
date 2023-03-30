@@ -53,10 +53,10 @@
 	}
 </script>
 
-<div class="grid gap-4 lg:grid-flow-col-dense">
+<div class="flex flex-col md:flex-row gap-4 lg:grid-flow-col-dense">
 	<!--? Quantity Controller -->
 	<div
-		class="bg-lightGrayishBlue grid grid-flow-col gap-4 justify-items-center px-4 lg:p-0 rounded-lg"
+		class="bg-lightGrayishBlue grid grid-flow-col gap-4 justify-items-center px-4 md:w-3/4 lg:p-0 rounded-lg"
 	>
 		<button
 			on:click={itemDecrease}
@@ -89,11 +89,10 @@
 		</button>
 	</div>
 	<!--? Add to cart Button -->
-
 	<button
 		disabled={itemQty == '' || itemQty == '0'}
 		on:click={addToCart}
-		class="flex justify-center items-center gap-2 bg-orange text-white whitespace-nowrap p-4 lg:px-16 rounded-xl
+		class="flex justify-center items-center gap-2 bg-orange text-white whitespace-nowrap p-4 lg:px-auto w-full rounded-xl
 		shadow-2xl shadow-orange transition-all duration-300
             active:opacity-30 lg:hover:opacity-60
           disabled:bg-gray-400 disabled:active:opacity-100 disabled:shadow-none"

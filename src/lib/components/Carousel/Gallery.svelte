@@ -8,10 +8,6 @@
 	const thumbnailsClick = (index) => {
 		dispatch('thumbnailsClick', { index });
 	};
-
-	// on:click={() => {
-	// 			scrollTo(index);
-	// 		}}
 </script>
 
 <div class="embla_gallery flex justify-between mt-6">
