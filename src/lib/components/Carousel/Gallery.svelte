@@ -16,11 +16,17 @@
 			on:click={() => {
 				thumbnailsClick(index);
 			}}
-			class={' embla__thumbnail rounded-2xl overflow-hidden border-2 border-transparent transition-all duration-200 hover:opacity-50 '.concat(
+			class={' embla__thumbnail rounded-2xl overflow-hidden border-2 border-transparent transition-all duration-200 '.concat(
 				selectedIndex == index ? ' !border-orange active group' : ''
 			)}
 		>
-			<img src={thumbnail.src} alt={thumbnail.alt} class="h-24 group-[.active]:opacity-50" />
+			<div class="  bg-white">
+				<img
+					src={thumbnail.src}
+					alt={thumbnail.alt}
+					class="h-24 group-[.active]:opacity-70 hover:opacity-70"
+				/>
+			</div>
 		</button>
 	{/each}
 </div>

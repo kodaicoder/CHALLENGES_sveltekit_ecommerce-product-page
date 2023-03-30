@@ -27,7 +27,7 @@
 	/>
 	<div class="relative">
 		<div class="absolute top-0 left-0 z-30 bg-transparent -translate-x-1/2 -translate-y-1/2">
-			<div class="w-max max-w-2xl">
+			<div class="w-max max-w-md">
 				<Carousel
 					{images}
 					{thumbnails}
