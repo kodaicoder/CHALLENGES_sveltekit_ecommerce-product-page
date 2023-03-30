@@ -3,7 +3,7 @@
 </script>
 
 <div class="grid gap-3">
-	<h2 class="font-medium text-orange lg:text-lg">{item.by}</h2>
+	<h2 class="font-medium text-orange lg:text-lg">{item.by.toUpperCase()}</h2>
 	<h1 class="font-bold text-3xl text-veryDarkBlue my-3 lg:text-5xl">{item.name}</h1>
 	<p>
 		{item.description}
