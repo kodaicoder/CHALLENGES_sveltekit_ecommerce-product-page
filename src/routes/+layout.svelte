@@ -7,10 +7,10 @@
 <div>
 	<NavBar />
 
-	<main class="mt-40">
+	<main class="lg:mt-40">
 		<slot />
 	</main>
-	<footer>
+	<footer class="mt-20">
 		<Footer />
 	</footer>
 </div>
